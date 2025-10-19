@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Một món quà đặc biệt!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="animation-background" class="hidden"></div>
+
+    <!-- SCENE 1: Hoạt cảnh mèo (hiện ra đầu tiên) -->
+    <div id="animation-scene">
+        <div id="recipient-photo"></div>
+        <div id="cat-runner">
+            <img src="assets/cat_love.png" class="cat-image" alt="Chú mèo dễ thương">
+        </div>
+    </div>
+
+    <!-- SCENE 2: Màn hình chào mừng (ban đầu ẩn) -->
+    <div id="welcome-screen" class="hidden">
+        <div class="welcome-box">
+            <h2>Một món quà nhỏ...</h2>
+            <p>...chú mèo vừa mang đến cho em!</p>
+            <button id="start-button" aria-label="Mở quà">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="gift-icon">
+                    <path fill-rule="evenodd" d="M12.963 2.286a.75.75 0 00-1.927 0l-7.5 4.5A.75.75 0 003 7.5v1.18l-1.72.43a.75.75 0 00-.53 1.023l1.28 4.335a.75.75 0 00.966.513l3.588-1.075a.75.75 0 00.42-.157V18a2.25 2.25 0 002.25 2.25h3.75a2.25 2.25 0 002.25-2.25v-3.242a.75.75 0 00.42.157l3.588 1.075a.75.75 0 00.966-.513l1.28-4.335a.75.75 0 00-.53-1.023l-1.72-.43V7.5a.75.75 0 00-.536-.714l-7.5-4.5zM12 4.123L18.29 8.25H5.709L12 4.123zM6 9.75a.75.75 0 01.75-.75h10.5a.75.75 0 01.75.75v3.242a.75.75 0 01-.42.157l-.88 2.052a.75.75 0 01-1.38-.594l.587-1.37-3.95-1.185a.75.75 0 01-.42-.647V9.75zm10.72 1.43a.75.75 0 01.53 1.023l-.64 2.165-1.931-.579.64-2.165a.75.75 0 011.024-.531l.377.112zM4.28 11.18a.75.75 0 011.024.531l.64 2.165-1.93.58-.64-2.165a.75.75 0 01.53-1.024l.377-.112z" clip-rule="evenodd" />
+                </svg>              
+            </button>
+            <p class="click-prompt">Bấm vào hộp quà để mở nhé!</p>
+        </div>
+    </div>
+
+    <!-- Hiệu ứng rơi nền (ban đầu ẩn) -->
+    <div class="falling-effects-wrapper hidden">
+        <div class="flowers-container"></div>
+        <div class="hearts-container"></div>
+    </div>
+
+    <!-- SCENE 3: Thiệp chính (ban đầu ẩn) -->
+    <div id="main-card" class="hidden">
+        <div class="card-cover">
+            <h1 class="cover-title">Chúc mừng em!</h1>
+            <button id="open-card-button">Click lần nữa nhé :)))</button>
+        </div>
+        <div class="card-content hidden">
+            <h1 class="title">Chúc mừng Ngày Phụ nữ Việt Nam 20/10!</h1>
+            <div class="message-area">
+                <p id="typed-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Âm thanh -->
+    <audio id="background-music" loop>
+        <source src="assets/dung-lam-trai-tim-anh-dau-son-tung.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
