@@ -1,0 +1,97 @@
+/* General Body Styles */
+body {
+    margin: 0; font-family: 'Dancing Script', cursive;
+    /* NỀN CHÍNH CỦA TRANG WEB */
+    background: url('assets/background.png') no-repeat center center/cover;
+    color: #fff; overflow: hidden; position: relative;
+    min-height: 100vh; display: flex; justify-content: center; align-items: center;
+
+    /* THÊM VÀO: Tạo không gian 3D cho toàn bộ trang */
+    perspective: 1000px;
+}
+.hidden { opacity: 0; visibility: hidden; pointer-events: none; transition: all 1s ease-out; }
+
+/* ===== NỀN TẠM THỜI CHO HOẠT CẢNH ===== */
+#animation-background {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('assets/background2.png') no-repeat center center/cover;
+    z-index: 800;
+    transition: opacity 1s ease-in-out;
+}
+
+/* ===== SCENE 1: HOẠT CẢNH ===== */
+#animation-scene {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 900;
+    opacity: 1; transition: opacity 1s ease-out;
+}
+#recipient-photo {
+    position: absolute; top: 50%; right: 25%;
+    transform: translateY(-50%);
+    width: 150px; height: 150px; border-radius: 50%; border: 5px solid white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); background-size: cover; background-position: center;
+    background-image: url('assets/nv_chinh.jpg');
+}
+#cat-runner {
+    position: absolute; top: 50%; left: -250px;
+    transform: translateY(-50%);
+    width: 200px; height: 150px;
+}
+#cat-runner.running { animation: cat-run-animation 4s ease-in-out forwards; }
+.cat-image { width: 100%; position: absolute; bottom: 0; left: 0; animation: cat-bounce 0.5s infinite; }
+
+/* ===== SCENE 2: WELCOME SCREEN ===== */
+#welcome-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 1000; display: flex; justify-content: center; align-items: center;
+}
+.welcome-box { text-align: center; color: #c2185b; font-family: 'Dancing Script', cursive; background: rgba(255, 255, 255, 0.5); padding: 30px 50px; border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); border: 1px solid rgba(255, 255, 255, 0.18); }
+.welcome-box h2 { font-size: 3em; margin: 0; } .welcome-box p { font-size: 1.5em; margin: 5px 0 20px 0; }
+#start-button { background: linear-gradient(145deg, #ff8a80, #ff5252); border: none; width: 100px; height: 100px; border-radius: 50%; cursor: pointer; box-shadow: 0 10px 20px rgba(255, 82, 82, 0.4); animation: pulse 2s infinite; }
+.gift-icon { width: 60px; height: 60px; color: white; }
+
+/* ===== SCENE 3: THIỆP CHÍNH (ĐÃ CẬP NHẬT) ===== */
+#main-card {
+    position: relative;
+    width: 90%; max-width: 800px; height: 500px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex; justify-content: center; align-items: center; text-align: center;
+    z-index: 10;
+    
+    /* THÊM VÀO: Kích hoạt 3D và set transform ban đầu */
+    transform-style: preserve-3d;
+    transform: scale(0); /* Vẫn giữ scale(0) cho hiệu ứng pop-up ban đầu */
+
+    /* SỬA LẠI: Tách transition để hiệu ứng nghiêng mượt hơn */
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1s;
+}
+#main-card.visible {
+    /* Hiệu ứng pop-up khi hiện ra */
+    transform: scale(1) rotateY(0deg) rotateX(0deg); 
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    /* SỬA LẠI: Thay đổi transition sau khi đã hiện ra để hiệu ứng tilt mượt hơn */
+    transition: transform 0.2s ease-out, opacity 1s;
+}
+
+.card-cover { transition: opacity 0.5s ease-out; } .cover-title { font-size: 3em; color: #fff; text-shadow: 2px 2px 5px rgba(0,0,0,0.4); } #open-card-button { font-family: 'Dancing Script', cursive; font-size: 1.5em; color: white; background: #e91e63; padding: 10px 30px; border-radius: 25px; border: none; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.2s, background-color 0.2s; } #open-card-button:hover { transform: scale(1.1); background-color: #d81b60; } .card-content { position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; } .title { font-size: 3.5em; margin-bottom: 20px; color: #ffe0b2; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); } .message-area { min-height: 150px; font-size: 1.8em; line-height: 1.6; color: #fff; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); padding: 0 20px; }
+
+/* ===== HIỆU ỨNG RƠI ===== */
+.falling-effects-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.flowers-container, .hearts-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } .flower, .heart { position: absolute; display: block; animation: fall linear infinite; } .flower img, .heart img { width: 30px; height: auto; }
+
+/* ===== KEYFRAMES ===== */
+@keyframes cat-run-animation { to { left: calc(75% - 220px); } }
+@keyframes cat-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+@keyframes fall { 0% { transform: translateY(-10vh); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(110vh) rotateZ(360deg); opacity: 0; } }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) { #recipient-photo { right: 10%; width: 120px; height: 120px; } @keyframes cat-run-animation { to { left: calc(90% - 200px); } } /* ... */ }
